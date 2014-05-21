@@ -3,9 +3,15 @@
 /* ==========================================================================
    ikerib
    ========================================================================== */
+.container {
+	width: 98% !important;
+}
 td.tdlinea {
 	vertical-align: middle !important;
 }
 .scrolla {
 	overflow-x:scroll;
+}
+.sintopborde {
+	border-top: none !important;
 }
