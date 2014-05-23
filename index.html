@@ -18,11 +18,12 @@
             }
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/colorpicker.css">
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
-    <body ng-app="ProduccionApp">
+    <body ng-app="produccionApp">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -38,98 +39,16 @@
           <a class="navbar-brand" href="#">Planificación</a>
         </div>
         <div class="navbar-collapse collapse">
-          
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#setting">Configuración</a></li>
+          </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
 
-    <div class="container" ng-controller="ProduccionController">
-
-      <div class="row">&nbsp;</div>
-      <div class="row">&nbsp;</div>
-      <div id="linea1" class="row">
-        <div class="col-md-12">
-          <div class="col-md-1">
-            <div class="input-group">
-              <span class="input-group-btn">
-                <a href="#" class="btn btn-success" ng-click="aldatuastea(-7)"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <button class="btn btn-default" datepicker-popup="{{format}}" name="dt" ng-model="dt" is-open="datepickers.dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open($event,'dt')" ng-change="selectDate(dt)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </div>
-          </div>
-          <div class="col-md-10 scrolla">
-
-            <div id="scroller">
-            <table class="table table-condensed">
-              <thead>
-                  <tr>
-                    <th></th>
-                    <th class="text-center" ng-model="eguna1">{{ eguna1  | date : 'yyyy/MM/dd'}}</th>
-                    <!-- <th class="text-center">&nbsp;</th> -->
-                    <th class="text-center" ng-model="eguna2">{{ eguna2  | date : 'yyyy/MM/dd'}}</th>
-                    <!-- <th class="text-center">&nbsp;</th> -->
-                    <th class="text-center" ng-model="eguna3">{{ eguna3  | date : 'yyyy/MM/dd'}}</th>
-                    <!-- <th class="text-center">&nbsp;</th> -->
-                    <th class="text-center" ng-model="eguna4">{{ eguna4  | date : 'yyyy/MM/dd'}}</th>
-                    <!-- <th class="text-center">&nbsp;</th> -->
-                    <th class="text-center" ng-model="eguna5">{{ eguna5  | date : 'yyyy/MM/dd'}}</th>
-                    <!-- <th class="text-center">&nbsp;</th> -->
-                    <th class="text-center" ng-model="eguna6">{{ eguna6  | date : 'yyyy/MM/dd'}}</th>
-                    <!-- <th class="text-center">&nbsp;</th> -->
-                    <th class="text-center" ng-model="eguna7">{{ eguna7  | date : 'yyyy/MM/dd'}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="lineas in datuak">
-                    <td class="tdlinea">Linea:{{ lineas.linea }}</td>
-                    <td data-ng-repeat="nireindex in [0,1,2,3,4,5,6]">
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th>Mañana</th>
-                          <th>Tarde</th>
-                          <th>Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                              <td>
-                                <table>
-                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[0].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.of }}</td></tr>
-                                </table>
-                              </td>
-                              <td>
-                                <table>
-                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[1].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.of }}</td></tr>
-                                </table>
-                              </td>
-                              <td>
-                                <table>
-                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[2].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.of }}</td></tr>
-                                </table>
-                              </td>                             
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr> <!-- lineas -->
-                </tbody>
-            </table>
-
-            </div> <!-- scroller -->
-
-
-
-          </div>
-          <div class="col-md-1">
-            <div class="input-group">
-              <span class="input-group-btn">
-                <!-- <button class="btn btn-default" datepicker-popup="{{format}}" name="dtSecond" ng-model="dtSecond" is-open="datepickers.dtSecond" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open($event,'dtSecond')" ng-change="selectDate(dtSecond)" ><i class="glyphicon glyphicon-calendar"></i></button> -->
-                <a href="#" class="btn btn-success" ng-click="aldatuastea(7)"><span class="glyphicon glyphicon-chevron-right"></span></a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div class="container" ng-controller="produccionController">
+      <div ng-view></div>
 
       <hr>
 
@@ -144,6 +63,7 @@
         <script src="js/vendor/bootstrap.min.js"></script>
 
         <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/angular-route.min.js"></script>
         <script src="js/vendor/ui-bootstrap-tpls-0.11.0.min.js"></script>
         <script src="js/vendor/moment-with-langs.min.js"></script>
         <script src="js/main.js"></script>

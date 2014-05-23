@@ -1,6 +1,23 @@
-var ProduccionApp = angular.module('ProduccionApp', ['ui.bootstrap']);
+var produccionApp = angular.module('produccionApp', ['ngRoute','ui.bootstrap','colorpicker.module']);
 
-ProduccionApp.controller('ProduccionController', function ($scope) {
+produccionApp.config(function($routeProvider) {
+    $routeProvider
+
+      // route for the home page
+      .when('/', {
+        templateUrl : 'pages/home.html',
+        controller  : 'produccionController'
+      })
+
+      // route for the about page
+      .when('/setting', {
+        templateUrl : 'pages/setting.html',
+        controller  : 'settingController'
+      })
+
+  });
+
+produccionApp.controller('produccionController', function ($scope) {
     $scope.datepickers = {
         dt: false,
         dtSecond: false
@@ -13,7 +30,7 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
     $scope.format = $scope.formats[0];
     $scope.astea = ['0'];
-  $scope.datuak = [
+    $scope.datuak = [
       {
         linea: '1',
         egunak:[{
@@ -22,22 +39,22 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
             { 
               turno: "1", 
               ordenes: [
-                { of: 'OF000012'},
+                { ref: '3CI00001'},
                 { of: 'OF000013'}
               ]  
             },
             { 
               turno: "2", 
               ordenes: [
-                { of:'OF00w0011'},
+                { ref:'3CI00001'},
                 { of:'112233'},
-                { of:'889977'}
+                { ref:'3CI00001'}
               ]
             },
             {
               turno: "3",
               ordenes: [
-                { of:'889922'}
+                { ref:'3CI00001'}
               ]
             }
             ]},
@@ -47,14 +64,14 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
             { 
               turno: "1", 
               ordenes: [
-                { of: 'OF200012'},
+                { ref: '3CI00001'},
                 { of: 'OF200013'}
               ]  
             },
             { 
               turno: "2", 
               ordenes: [
-                { of:'OF222211'},
+                { ref:'3CI00001'},
                 { of:'OF232233'},
                 { of:'OF289977'}
               ]
@@ -62,11 +79,11 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
             {
               turno: "3",
               ordenes: [
+                { ref:'3CI00001'},
                 { of:'OF200000'},
+                { ref:'3CI00001'},
                 { of:'OF200000'},
-                { of:'OF200000'},
-                { of:'OF200000'},
-                { of:'OF200000'}
+                { ref:'3CI00001'}
               ]
             }
           ]},
@@ -86,22 +103,22 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
             { 
               turno: "1", 
               ordenes: [
-                { of: '2OF000012'},
+                { ref: '3CI00001'},
                 { of: '2OF000013'}
               ]  
             },
             { 
               turno: "2", 
               ordenes: [
-                { of:'2OF00w0011'},
+                { ref:'3CI00001'},
                 { of:'2OF2233'},
-                { of:'2OF889977'}
+                { ref:'3CI00001'}
               ]
             },
             {
               turno: "3",
               ordenes: [
-                { of:'2OF889922'}
+                { ref:'3CI00001'}
               ]
             }
           ]},
@@ -112,26 +129,26 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
             { 
               turno: "1", 
               ordenes: [
-                { of: '2OF200012'},
+                { ref: '3CI00001'},
                 { of: '2OF200013'}
               ]  
             },
             { 
               turno: "2", 
               ordenes: [
-                { of:'2OF222211'},
+                { ref:'3CI00001'},
                 { of:'2OF232233'},
-                { of:'2OF289977'}
+                { ref:'3CI00001'}
               ]
             },
             {
               turno: "3",
               ordenes: [
+                { ref:'3CI00001'},
                 { of:'2OF200000'},
+                { ref:'3CI00001'},
                 { of:'2OF200000'},
-                { of:'2OF200000'},
-                { of:'2OF200000'},
-                { of:'2OF200000'}
+                { ref:'3CI00001'}
               ]
             }
           ]},
@@ -256,6 +273,7 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
     $scope.today();
 
     $scope.showWeeks = true;
+
     $scope.toggleWeeks = function () {
         $scope.showWeeks = !$scope.showWeeks;
     };
@@ -290,4 +308,11 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
       $scope.eratufetxak(fetxa);
     }
 
+});
+
+produccionApp.controller('settingController', function ($scope) {
+    $scope.mysettings = [
+      { ref: '3CI00001', backcolor: '#000000', forecolor: '#ffffff' },
+      { ref: '3CI00002', backcolor: '#5cb85c', forecolor: '#000000' }
+    ];
 });
