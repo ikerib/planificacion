@@ -53,7 +53,7 @@
             <div class="input-group">
               <span class="input-group-btn">
                 <a href="#" class="btn btn-success" ng-click="aldatuastea(-7)"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <button class="btn btn-default" datepicker-popup="{{format}}" name="dt" ng-model="dt" is-open="datepickers.dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open($event,'dt')"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button class="btn btn-default" datepicker-popup="{{format}}" name="dt" ng-model="dt" is-open="datepickers.dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open($event,'dt')" ng-change="selectDate(dt)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
             </div>
           </div>
@@ -122,7 +122,7 @@
           <div class="col-md-1">
             <div class="input-group">
               <span class="input-group-btn">
-                <button class="btn btn-default" datepicker-popup="{{format}}" name="dtfin" ng-model="dtfin" is-open="datepickers.dtfin" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open($event,'dtfin')"><i class="glyphicon glyphicon-calendar"></i></button>
+                <!-- <button class="btn btn-default" datepicker-popup="{{format}}" name="dtSecond" ng-model="dtSecond" is-open="datepickers.dtSecond" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open($event,'dtSecond')" ng-change="selectDate(dtSecond)" ><i class="glyphicon glyphicon-calendar"></i></button> -->
                 <a href="#" class="btn btn-success" ng-click="aldatuastea(7)"><span class="glyphicon glyphicon-chevron-right"></span></a>
               </span>
             </div>

@@ -5,12 +5,19 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
         dt: false,
         dtSecond: false
     }
-    $scope.astea = ['0']
+    $scope.dateOptions = {
+        'year-format': "'yy'",
+        'starting-day': 1
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
+    $scope.format = $scope.formats[0];
+    $scope.astea = ['0'];
   $scope.datuak = [
       {
         linea: '1',
         egunak:[{
-          fetxa: '2014/05/23',
+          fetxa: '2014/05/19',
             turnoak: [
             { 
               turno: "1", 
@@ -34,8 +41,8 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
               ]
             }
             ]},
-          {fetxa: '2014/05/24'},
-          {fetxa: '2014/05/25',
+          {fetxa: '2014/05/20'},
+          {fetxa: '2014/05/21',
             turnoak: [
             { 
               turno: "1", 
@@ -63,18 +70,18 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
               ]
             }
           ]},
-          {fetxa: '2014/05/26'},
-          {fetxa: '2014/05/27'},
-          {fetxa: '2014/05/28'},
-          {fetxa: '2014/05/29'}
+          {fetxa: '2014/05/22'},
+          {fetxa: '2014/05/23'},
+          {fetxa: '2014/05/24'},
+          {fetxa: '2014/05/25'}
         ]
       },
       {
         linea: '2',
         egunak:[
-          { fetxa: '2014/05/23'},
+          { fetxa: '2014/05/19'},
           {
-          fetxa: '2014/05/24',
+          fetxa: '2014/05/20',
             turnoak: [
             { 
               turno: "1", 
@@ -98,9 +105,9 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
               ]
             }
           ]},
-          {fetxa: '2014/05/25'},
+          {fetxa: '2014/05/21'},
           {
-          fetxa: '2014/05/26',
+          fetxa: '2014/05/22',
             turnoak: [
             { 
               turno: "1", 
@@ -128,26 +135,44 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
               ]
             }
           ]},
-          {fetxa: '2014/05/27'},
-          {fetxa: '2014/05/28'},
-          {fetxa: '2014/05/29'}
+          {fetxa: '2014/05/23'},
+          {fetxa: '2014/05/24'},
+          {fetxa: '2014/05/25'}
         ]
       }
     ];
 
+    $scope.lortuastelehena = function (fetxa) {
+      egunzen = moment(fetxa, "YYYY/MM/DD").day();
+      switch (egunzen) {
+        case 0: // igandea
+          return moment(fetxa, "YYYY/MM/DD").add('days',1).format("YYYY/MM/DD");
+        case 1: // astelehena
+          return fetxa;
+        case 2: // asteartea
+          return moment(fetxa, "YYYY/MM/DD").subtract('days',1).format("YYYY/MM/DD");
+        case 3: // asteazkena
+          return moment(fetxa, "YYYY/MM/DD").subtract('days',2).format("YYYY/MM/DD");
+        case 4: // osteguna 
+          return moment(fetxa, "YYYY/MM/DD").subtract('days',3).format("YYYY/MM/DD");  
+        case 5: // Ostirala
+          return moment(fetxa, "YYYY/MM/DD").subtract('days',4).format("YYYY/MM/DD");
+        case 6: // larunbata
+          return moment(fetxa, "YYYY/MM/DD").subtract('days',5).format("YYYY/MM/DD");       
+      }
+    };
     
-    var fetxa = moment().format("YYYY/MM/DD");;
+    var fetxa = $scope.lortuastelehena(moment().format("YYYY/MM/DD"));
     $scope.dt = fetxa;
+
     $scope.eratufetxak = function (fetxa) {
-        console.log("Barruan :" + fetxa);
         $scope.eguna1 = moment(fetxa,'YYYY/MM/DD').format("YYYY/MM/DD");
-        console.log("Eguna11 :" + $scope.eguna1);
-        $scope.eguna2 = moment(fetxa).add('days', 1).format("YYYY/MM/DD");
-        $scope.eguna3 = moment(fetxa).add('days', 2).format("YYYY/MM/DD");
-        $scope.eguna4 = moment(fetxa).add('days', 3).format("YYYY/MM/DD");
-        $scope.eguna5 = moment(fetxa).add('days', 4).format("YYYY/MM/DD");
-        $scope.eguna6 = moment(fetxa).add('days', 5).format("YYYY/MM/DD");
-        $scope.eguna7 = moment(fetxa).add('days', 6).format("YYYY/MM/DD");
+        $scope.eguna2 = moment(fetxa,'YYYY/MM/DD').add('days', 1).format("YYYY/MM/DD");
+        $scope.eguna3 = moment(fetxa,'YYYY/MM/DD').add('days', 2).format("YYYY/MM/DD");
+        $scope.eguna4 = moment(fetxa,'YYYY/MM/DD').add('days', 3).format("YYYY/MM/DD");
+        $scope.eguna5 = moment(fetxa,'YYYY/MM/DD').add('days', 4).format("YYYY/MM/DD");
+        $scope.eguna6 = moment(fetxa,'YYYY/MM/DD').add('days', 5).format("YYYY/MM/DD");
+        $scope.eguna7 = moment(fetxa,'YYYY/MM/DD').add('days', 6).format("YYYY/MM/DD");
         $scope.dt = $scope.eguna1;
         $scope.dtSecond = $scope.eguna7;
     };
@@ -223,8 +248,10 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
     };
     
     $scope.today = function () {
-        $scope.dt = new Date();
-        $scope.dtSecond = new Date();
+        // $scope.dt = new Date();
+        $scope.dt = moment($scope.dt).toDate();
+        // $scope.dtSecond = new Date();
+        $scope.dtSecond = moment($scope.dtSecond).toDate();
     };
     $scope.today();
 
@@ -254,13 +281,13 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
         $scope.datepickers[which] = true;
     };
 
-    $scope.dateOptions = {
-        'year-format': "'yy'",
-        'starting-day': 1
-    };
+    
 
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-    $scope.format = $scope.formats[0];
-
+    $scope.selectDate = function(dt) {
+      console.log(dt);
+      var fetxa = $scope.lortuastelehena(moment(dt).format("YYYY/MM/DD"));
+      $scope.dt = fetxa;
+      $scope.eratufetxak(fetxa);
+    }
 
 });
