@@ -5,7 +5,137 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
         dt: false,
         dtSecond: false
     }
+    $scope.astea = ['0']
+  $scope.datuak = [
+      {
+        linea: '1',
+        egunak:[{
+          fetxa: '2014/05/23',
+            turnoak: [
+            { 
+              turno: "1", 
+              ordenes: [
+                { of: 'OF000012'},
+                { of: 'OF000013'}
+              ]  
+            },
+            { 
+              turno: "2", 
+              ordenes: [
+                { of:'OF00w0011'},
+                { of:'112233'},
+                { of:'889977'}
+              ]
+            },
+            {
+              turno: "3",
+              ordenes: [
+                { of:'889922'}
+              ]
+            }
+            ]},
+          {fetxa: '2014/05/24'},
+          {fetxa: '2014/05/25',
+            turnoak: [
+            { 
+              turno: "1", 
+              ordenes: [
+                { of: 'OF200012'},
+                { of: 'OF200013'}
+              ]  
+            },
+            { 
+              turno: "2", 
+              ordenes: [
+                { of:'OF222211'},
+                { of:'OF232233'},
+                { of:'OF289977'}
+              ]
+            },
+            {
+              turno: "3",
+              ordenes: [
+                { of:'OF200000'},
+                { of:'OF200000'},
+                { of:'OF200000'},
+                { of:'OF200000'},
+                { of:'OF200000'}
+              ]
+            }
+          ]},
+          {fetxa: '2014/05/26'},
+          {fetxa: '2014/05/27'},
+          {fetxa: '2014/05/28'},
+          {fetxa: '2014/05/29'}
+        ]
+      },
+      {
+        linea: '2',
+        egunak:[
+          { fetxa: '2014/05/23'},
+          {
+          fetxa: '2014/05/24',
+            turnoak: [
+            { 
+              turno: "1", 
+              ordenes: [
+                { of: '2OF000012'},
+                { of: '2OF000013'}
+              ]  
+            },
+            { 
+              turno: "2", 
+              ordenes: [
+                { of:'2OF00w0011'},
+                { of:'2OF2233'},
+                { of:'2OF889977'}
+              ]
+            },
+            {
+              turno: "3",
+              ordenes: [
+                { of:'2OF889922'}
+              ]
+            }
+          ]},
+          {fetxa: '2014/05/25'},
+          {
+          fetxa: '2014/05/26',
+            turnoak: [
+            { 
+              turno: "1", 
+              ordenes: [
+                { of: '2OF200012'},
+                { of: '2OF200013'}
+              ]  
+            },
+            { 
+              turno: "2", 
+              ordenes: [
+                { of:'2OF222211'},
+                { of:'2OF232233'},
+                { of:'2OF289977'}
+              ]
+            },
+            {
+              turno: "3",
+              ordenes: [
+                { of:'2OF200000'},
+                { of:'2OF200000'},
+                { of:'2OF200000'},
+                { of:'2OF200000'},
+                { of:'2OF200000'}
+              ]
+            }
+          ]},
+          {fetxa: '2014/05/27'},
+          {fetxa: '2014/05/28'},
+          {fetxa: '2014/05/29'}
+        ]
+      }
+    ];
 
+    
     var fetxa = moment().format("YYYY/MM/DD");;
     $scope.dt = fetxa;
     $scope.eratufetxak = function (fetxa) {
@@ -42,6 +172,56 @@ ProduccionApp.controller('ProduccionController', function ($scope) {
         $scope.eratufetxak(fetxaberria);
     }
 
+    $scope.checkStatus = function(fec, nireindex) {
+      switch (nireindex) {
+        case 0:
+          if ( $scope.eguna1 == fec) {
+            return true;
+          } else {
+            return false;
+          }
+        case 1:
+          if ( $scope.eguna2 == fec) {
+            return true;
+          } else {
+            return false;
+          }
+        case 2:
+          if ( $scope.eguna3 == fec) {
+            return true;
+          } else {
+            return false;
+          }
+        case 3:
+          if ( $scope.eguna4 == fec) {
+            return true;
+          } else {
+            return false;
+          }
+        case 4:
+          if ( $scope.eguna5 == fec) {
+            return true;
+          } else {
+            return false;
+          }
+        case 5:
+          if ( $scope.eguna6 == fec) {
+            return true;
+          } else {
+            return false;
+          }
+        case 6:
+          if ( $scope.eguna7 == fec) {
+            return true;
+          } else {
+            return false;
+          }
+      }
+      var nirefec = "eguna"+nireindex;
+      var esanfec = $scope.nirefec;
+      console.log(esanfec);
+    };
+    
     $scope.today = function () {
         $scope.dt = new Date();
         $scope.dtSecond = new Date();

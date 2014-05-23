@@ -60,289 +60,64 @@
           <div class="col-md-10 scrolla">
 
             <div id="scroller">
-              <table id="nagusia" class="table table-condensed">
-                <thead>
+            <table class="table table-condensed">
+              <thead>
                   <tr>
                     <th></th>
                     <th class="text-center" ng-model="eguna1">{{ eguna1  | date : 'yyyy/MM/dd'}}</th>
-                    <th class="text-center">&nbsp;</th>
+                    <!-- <th class="text-center">&nbsp;</th> -->
                     <th class="text-center" ng-model="eguna2">{{ eguna2  | date : 'yyyy/MM/dd'}}</th>
-                    <th class="text-center">&nbsp;</th>
+                    <!-- <th class="text-center">&nbsp;</th> -->
                     <th class="text-center" ng-model="eguna3">{{ eguna3  | date : 'yyyy/MM/dd'}}</th>
-                    <th class="text-center">&nbsp;</th>
+                    <!-- <th class="text-center">&nbsp;</th> -->
                     <th class="text-center" ng-model="eguna4">{{ eguna4  | date : 'yyyy/MM/dd'}}</th>
-                    <th class="text-center">&nbsp;</th>
+                    <!-- <th class="text-center">&nbsp;</th> -->
                     <th class="text-center" ng-model="eguna5">{{ eguna5  | date : 'yyyy/MM/dd'}}</th>
-                    <th class="text-center">&nbsp;</th>
+                    <!-- <th class="text-center">&nbsp;</th> -->
                     <th class="text-center" ng-model="eguna6">{{ eguna6  | date : 'yyyy/MM/dd'}}</th>
-                    <th class="text-center">&nbsp;</th>
+                    <!-- <th class="text-center">&nbsp;</th> -->
                     <th class="text-center" ng-model="eguna7">{{ eguna7  | date : 'yyyy/MM/dd'}}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="tdlinea">Linea1</td>
-                    <td>
+                  <tr ng-repeat="lineas in datuak">
+                    <td class="tdlinea">Linea:{{ lineas.linea }}</td>
+                    <td data-ng-repeat="nireindex in [0,1,2,3,4,5,6]">
                       <table class="table text-center table-condensed">
                         <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
+                          <th>Mañana</th>
+                          <th>Tarde</th>
+                          <th>Noche</th>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>
-                              <span data-toggle="tooltip" data-html="true" title="PEDIDO: 1899 <br> FABRICADA: 2888 <br> PENDIENTE: 2999" class='mitooltip'>CI0541122</span>
-                            </td>
-                            <td>
-                              <span data-toggle="tooltip" data-html="true" title="PEDIDO: 1899 <br> FABRICADA: 2888 <br> PENDIENTE: 2999" class='mitooltip'>CI55r3122</span>
-                            </td>
-                            <td>
-                              <span data-toggle="tooltip" data-html="true" title="PEDIDO: 1899 <br> FABRICADA: 2888 <br> PENDIENTE: 2999" class='mitooltip'>CI001122</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>OF778822</td>
-                            <td>OF778234422</td>
-                            <td>OF778822</td>
+                              <td>
+                                <table>
+                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[0].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.of }}</td></tr>
+                                </table>
+                              </td>
+                              <td>
+                                <table>
+                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[1].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.of }}</td></tr>
+                                </table>
+                              </td>
+                              <td>
+                                <table>
+                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[2].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.of }}</td></tr>
+                                </table>
+                              </td>                             
                           </tr>
                         </tbody>
                       </table>
                     </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr><td colspan="14" class="sintopborde"></td></tr>
-                  <tr><td colspan="14" class="sintopborde"></td></tr>
-                  <tr>
-                    <td class="tdlinea">Linea1</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                          <tr>
-                            <td>OF778822</td>
-                            <td>OF778234422</td>
-                            <td>OF778822</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                      <table class="table text-center table-condensed">
-                        <thead>
-                          <th class="text-center">Mañana</th>
-                          <th class="text-center">Tarde</th>
-                          <th class="text-center">Noche</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>CI001122</td>
-                            <td>CI001123</td>
-                            <td>CI001124</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
+                  </tr> <!-- lineas -->
                 </tbody>
-              </table>
-            </div> <!-- lineas -->
+            </table>
+
+            </div> <!-- scroller -->
+
+
+
           </div>
           <div class="col-md-1">
             <div class="input-group">
