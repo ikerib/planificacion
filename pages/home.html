@@ -46,12 +46,21 @@
                           <tr>
                               <td>
                                 <table>
-                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[0].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.ref }} {{ orden.of }} </td></tr>
+                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[0].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)">
+                                    <td>{{ orden.ref }} {{ orden.of }} 
+                                    <br>
+                                    <div style="background-color:#000000; color:#fff;">
+                                      {{ mysettings | searchBy : 'ref' : orden.ref }} 
+                                    </div>
+                                    </td>
+                                  </tr>
                                 </table>
                               </td>
                               <td>
                                 <table>
-                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[1].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.ref }} {{ orden.of }}</td></tr>
+                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[1].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)">
+                                    <td>{{ orden.ref }} {{ orden.of }}</td>
+                                  </tr>
                                 </table>
                               </td>
                               <td>
@@ -75,7 +84,6 @@
           <div class="col-md-1">
             <div class="input-group">
               <span class="input-group-btn">
-                <!-- <button class="btn btn-default" datepicker-popup="{{format}}" name="dtSecond" ng-model="dtSecond" is-open="datepickers.dtSecond" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open($event,'dtSecond')" ng-change="selectDate(dtSecond)" ><i class="glyphicon glyphicon-calendar"></i></button> -->
                 <button class="btn btn-success" ng-click="aldatuastea(7)"><span class="glyphicon glyphicon-chevron-right"></span></button>
               </span>
             </div>

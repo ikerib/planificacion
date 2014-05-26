@@ -1,5 +1,7 @@
 var produccionApp = angular.module('produccionApp', ['ngRoute','ui.bootstrap','colorpicker.module']);
 
+
+
 produccionApp.config(function($routeProvider) {
     $routeProvider
 
@@ -34,7 +36,7 @@ produccionApp.controller('produccionController', function ($scope) {
       {
         linea: '1',
         egunak:[{
-          fetxa: '2014/05/19',
+          fetxa: '2014/05/26',
             turnoak: [
             { 
               turno: "1", 
@@ -58,8 +60,8 @@ produccionApp.controller('produccionController', function ($scope) {
               ]
             }
             ]},
-          {fetxa: '2014/05/20'},
-          {fetxa: '2014/05/21',
+          {fetxa: '2014/05/27'},
+          {fetxa: '2014/05/28',
             turnoak: [
             { 
               turno: "1", 
@@ -87,23 +89,23 @@ produccionApp.controller('produccionController', function ($scope) {
               ]
             }
           ]},
-          {fetxa: '2014/05/22'},
-          {fetxa: '2014/05/23'},
-          {fetxa: '2014/05/24'},
-          {fetxa: '2014/05/25'}
+          {fetxa: '2014/05/29'},
+          {fetxa: '2014/05/30'},
+          {fetxa: '2014/05/31'},
+          {fetxa: '2014/06/01'}
         ]
       },
       {
         linea: '2',
         egunak:[
-          { fetxa: '2014/05/19'},
+          { fetxa: '2014/05/26'},
           {
-          fetxa: '2014/05/20',
+          fetxa: '2014/05/27',
             turnoak: [
             { 
               turno: "1", 
               ordenes: [
-                { ref: '3CI00001'},
+                { ref: '3CI00002'},
                 { of: '2OF000013'}
               ]  
             },
@@ -122,9 +124,9 @@ produccionApp.controller('produccionController', function ($scope) {
               ]
             }
           ]},
-          {fetxa: '2014/05/21'},
+          {fetxa: '2014/05/28'},
           {
-          fetxa: '2014/05/22',
+          fetxa: '2014/05/29',
             turnoak: [
             { 
               turno: "1", 
@@ -152,9 +154,9 @@ produccionApp.controller('produccionController', function ($scope) {
               ]
             }
           ]},
-          {fetxa: '2014/05/23'},
-          {fetxa: '2014/05/24'},
-          {fetxa: '2014/05/25'}
+          {fetxa: '2014/05/30'},
+          {fetxa: '2014/05/31'},
+          {fetxa: '2014/06/01'}
         ]
       }
     ];
@@ -299,14 +301,17 @@ produccionApp.controller('produccionController', function ($scope) {
         $scope.datepickers[which] = true;
     };
 
-    
-
     $scope.selectDate = function(dt) {
       console.log(dt);
       var fetxa = $scope.lortuastelehena(moment(dt).format("YYYY/MM/DD"));
       $scope.dt = fetxa;
       $scope.eratufetxak(fetxa);
     }
+
+    $scope.mysettings = [
+      { ref: '3CI00001', backcolor: '#000000', forecolor: '#ffffff' },
+      { ref: '3CI00002', backcolor: '#5cb85c', forecolor: '#000000' }
+    ];
 
 });
 
@@ -316,3 +321,13 @@ produccionApp.controller('settingController', function ($scope) {
       { ref: '3CI00002', backcolor: '#5cb85c', forecolor: '#000000' }
     ];
 });
+
+produccionApp.filter('searchBy', function() {
+    return function( array, prop , val ) {
+         // filter has polyfills for older browsers. Check underscore.js if needed
+         return array.filter( function(row) {
+             return row[prop] == val;
+         } )[0];
+         // this returns an array. You can pick the first element with [0]
+    }
+} );
