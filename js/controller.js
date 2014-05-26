@@ -19,20 +19,8 @@ produccionApp.config(function($routeProvider) {
 
   });
 
-produccionApp.controller('produccionController', function ($scope) {
-    $scope.datepickers = {
-        dt: false,
-        dtSecond: false
-    }
-    $scope.dateOptions = {
-        'year-format': "'yy'",
-        'starting-day': 1
-    };
-
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-    $scope.format = $scope.formats[0];
-    $scope.astea = ['0'];
-    $scope.datuak = [
+produccionApp.factory('Data', function(){
+    return [
       {
         linea: '1',
         egunak:[{
@@ -160,6 +148,22 @@ produccionApp.controller('produccionController', function ($scope) {
         ]
       }
     ];
+});
+
+produccionApp.controller('produccionController', function ($scope, Data) {
+    $scope.datepickers = {
+        dt: false,
+        dtSecond: false
+    }
+    $scope.dateOptions = {
+        'year-format': "'yy'",
+        'starting-day': 1
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
+    $scope.format = $scope.formats[0];
+    $scope.astea = ['0'];
+    $scope.datuak = Data;
 
     $scope.lortuastelehena = function (fetxa) {
       egunzen = moment(fetxa, "YYYY/MM/DD").day();
@@ -315,7 +319,7 @@ produccionApp.controller('produccionController', function ($scope) {
 
 });
 
-produccionApp.controller('settingController', function ($scope) {
+produccionApp.controller('settingController', function ($scope, Data) {
     $scope.mysettings = [
       { ref: '3CI00001', backcolor: '#000000', forecolor: '#ffffff' },
       { ref: '3CI00002', backcolor: '#5cb85c', forecolor: '#000000' }
@@ -331,3 +335,4 @@ produccionApp.filter('searchBy', function() {
          // this returns an array. You can pick the first element with [0]
     }
 } );
+
