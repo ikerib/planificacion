@@ -339,22 +339,33 @@ produccionApp.filter('searchBy', function() {
 produccionApp.filter('searchByRefBackcolor', function() {
   
   return function( array, prop , val ) {
-    // console.log(array);
-    // console.log(prop);
-    // console.log(val);
 
     var kk =  array.filter( function(row) {
              return row[prop] == val;
          } );
 
-    if ( kk ) {
-      console.log("********** HEMEN **********");
-      console.log( kk.backcolor );
-      console.log("********** FIN **********");  
+    if( kk.length > 0 ) {
+      return kk[0].backcolor;
     }
-    
 
-    return null;
+    return  null;
+  }
+
+});
+
+produccionApp.filter('searchByRefForecolor', function() {
+  
+  return function( array, prop , val ) {
+
+    var kk =  array.filter( function(row) {
+             return row[prop] == val;
+         } );
+
+    if( kk.length > 0 ) {
+      return kk[0].forecolor;
+    }
+
+    return  null;
   }
 
 });

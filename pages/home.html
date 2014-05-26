@@ -47,11 +47,8 @@
                               <td>
                                 <table>
                                   <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[0].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)">
-                                    <td>{{ orden.ref }} {{ orden.of }} 
-                                    <br>
-                                    <div style="background-color:#000000; color:#fff;">
+                                    <td style="background-color: {{ mysettings | searchByRefBackcolor : 'ref' : orden.ref }} !important; color:{{ mysettings | searchByRefForecolor : 'ref' : orden.ref }} !important;">{{ orden.ref }} {{ orden.of }} 
                                       {{ mysettings | searchByRefBackcolor : 'ref' : orden.ref }} 
-                                    </div>
                                     </td>
                                   </tr>
                                 </table>
