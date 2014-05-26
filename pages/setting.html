@@ -19,10 +19,14 @@
     			
     	<div class="row" ng-repeat="s in mysettings">
     		<div class="col-md-4">
-    			<div class="col-header">{{ s.ref }}</div>
+    			<div colorpicker class="col-header">{{s.ref}}</div>
+                
     		</div>
     		<div class="col-md-4">
-    			<div class="col-header"><span style="display:block; background-color:{{ s.backcolor }}; width:100px; height:20px;">&nbsp;</span></div>
+    			<div class="col-header">
+                    <span colorpicker style="display:block; background-color:{{ s.backcolor }}; width:100px; height:20px;" ng-model="s.backcolor">&nbsp;</span>
+
+                </div>
     		</div>
     		<div class="col-md-4">
     			<div class="col-header"><span style="display:block; border:1px solid #ccc; background-color:{{ s.forecolor }}; width:100px; height:20px;">&nbsp;</span></div>
