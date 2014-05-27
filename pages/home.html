@@ -48,7 +48,6 @@
                                 <table>
                                   <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[0].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)">
                                     <td style="background-color: {{ mysettings | searchByRefBackcolor : 'ref' : orden.ref }} !important; color:{{ mysettings | searchByRefForecolor : 'ref' : orden.ref }} !important;">{{ orden.ref }} {{ orden.of }} 
-                                      {{ mysettings | searchByRefBackcolor : 'ref' : orden.ref }} 
                                     </td>
                                   </tr>
                                 </table>
@@ -56,13 +55,13 @@
                               <td>
                                 <table>
                                   <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[1].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)">
-                                    <td>{{ orden.ref }} {{ orden.of }}</td>
+                                    <td style="background-color: {{ mysettings | searchByRefBackcolor : 'ref' : orden.ref }} !important; color:{{ mysettings | searchByRefForecolor : 'ref' : orden.ref }} !important;">{{ orden.ref }} {{ orden.of }}</td>
                                   </tr>
                                 </table>
                               </td>
                               <td>
                                 <table>
-                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[2].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td>{{ orden.ref }} {{ orden.of }}</td></tr>
+                                  <tr ng-repeat="orden in lineas.egunak[nireindex].turnoak[2].ordenes" ng-if="checkStatus(lineas.egunak[nireindex].fetxa,nireindex)"><td style="background-color: {{ mysettings | searchByRefBackcolor : 'ref' : orden.ref }} !important; color:{{ mysettings | searchByRefForecolor : 'ref' : orden.ref }} !important;">{{ orden.ref }} {{ orden.of }}</td></tr>
                                 </table>
                               </td>                             
                           </tr>

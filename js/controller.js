@@ -1,6 +1,5 @@
+
 var produccionApp = angular.module('produccionApp', ['ngRoute','ui.bootstrap','colorpicker.module']);
-
-
 
 produccionApp.config(function($routeProvider) {
     $routeProvider
@@ -16,141 +15,15 @@ produccionApp.config(function($routeProvider) {
         templateUrl : 'pages/setting.html',
         controller  : 'settingController'
       })
-
-  });
-
-produccionApp.factory('Data', function(){
-    return [
-      {
-        linea: '1',
-        egunak:[{
-          fetxa: '2014/05/26',
-            turnoak: [
-            { 
-              turno: "1", 
-              ordenes: [
-                { ref: '3CI00001'},
-                { of: 'OF000013'}
-              ]  
-            },
-            { 
-              turno: "2", 
-              ordenes: [
-                { ref:'3CI00001'},
-                { of:'112233'},
-                { ref:'3CI00001'}
-              ]
-            },
-            {
-              turno: "3",
-              ordenes: [
-                { ref:'3CI00001'}
-              ]
-            }
-            ]},
-          {fetxa: '2014/05/27'},
-          {fetxa: '2014/05/28',
-            turnoak: [
-            { 
-              turno: "1", 
-              ordenes: [
-                { ref: '3CI00001'},
-                { of: 'OF200013'}
-              ]  
-            },
-            { 
-              turno: "2", 
-              ordenes: [
-                { ref:'3CI00001'},
-                { of:'OF232233'},
-                { of:'OF289977'}
-              ]
-            },
-            {
-              turno: "3",
-              ordenes: [
-                { ref:'3CI00001'},
-                { of:'OF200000'},
-                { ref:'3CI00001'},
-                { of:'OF200000'},
-                { ref:'3CI00001'}
-              ]
-            }
-          ]},
-          {fetxa: '2014/05/29'},
-          {fetxa: '2014/05/30'},
-          {fetxa: '2014/05/31'},
-          {fetxa: '2014/06/01'}
-        ]
-      },
-      {
-        linea: '2',
-        egunak:[
-          { fetxa: '2014/05/26'},
-          {
-          fetxa: '2014/05/27',
-            turnoak: [
-            { 
-              turno: "1", 
-              ordenes: [
-                { ref: '3CI00002'},
-                { of: '2OF000013'}
-              ]  
-            },
-            { 
-              turno: "2", 
-              ordenes: [
-                { ref:'3CI00001'},
-                { of:'2OF2233'},
-                { ref:'3CI00001'}
-              ]
-            },
-            {
-              turno: "3",
-              ordenes: [
-                { ref:'3CI00001'}
-              ]
-            }
-          ]},
-          {fetxa: '2014/05/28'},
-          {
-          fetxa: '2014/05/29',
-            turnoak: [
-            { 
-              turno: "1", 
-              ordenes: [
-                { ref: '3CI00001'},
-                { of: '2OF200013'}
-              ]  
-            },
-            { 
-              turno: "2", 
-              ordenes: [
-                { ref:'3CI00001'},
-                { of:'2OF232233'},
-                { ref:'3CI00001'}
-              ]
-            },
-            {
-              turno: "3",
-              ordenes: [
-                { ref:'3CI00001'},
-                { of:'2OF200000'},
-                { ref:'3CI00001'},
-                { of:'2OF200000'},
-                { ref:'3CI00001'}
-              ]
-            }
-          ]},
-          {fetxa: '2014/05/30'},
-          {fetxa: '2014/05/31'},
-          {fetxa: '2014/06/01'}
-        ]
-      }
-    ];
 });
 
-produccionApp.controller('produccionController', function ($scope, Data) {
+produccionApp.factory('produccionAPIservice', function($http) {
+
+
+});
+
+
+produccionApp.controller('produccionController', function ($scope, $http) {
     $scope.datepickers = {
         dt: false,
         dtSecond: false
@@ -163,7 +36,21 @@ produccionApp.controller('produccionController', function ($scope, Data) {
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
     $scope.format = $scope.formats[0];
     $scope.astea = ['0'];
-    $scope.datuak = Data;
+
+//    $scope.datuak = produccionAPIservice.getDatos();
+//    console.log(produccionAPIservice.getDatos());
+
+    $scope.nameFilter = null;
+    $scope.getDatuak = function() {
+        $http.jsonp('http://127.0.0.1:8000/json').success(function(data){
+            $scope.datuak=data;
+        }).error(function(e){
+            console.log("error al obtener datos");
+                console.log(e);
+        });
+    };
+    $scope.getDatuak();
+
 
     $scope.lortuastelehena = function (fetxa) {
       egunzen = moment(fetxa, "YYYY/MM/DD").day();
@@ -184,7 +71,7 @@ produccionApp.controller('produccionController', function ($scope, Data) {
           return moment(fetxa, "YYYY/MM/DD").subtract('days',5).format("YYYY/MM/DD");       
       }
     };
-    
+
     var fetxa = $scope.lortuastelehena(moment().format("YYYY/MM/DD"));
     $scope.dt = fetxa;
 
@@ -316,7 +203,6 @@ produccionApp.controller('produccionController', function ($scope, Data) {
       { ref: '3CI00001', backcolor: '#000000', forecolor: '#ffffff' },
       { ref: '3CI00002', backcolor: '#5cb85c', forecolor: '#000000' }
     ];
-
 });
 
 produccionApp.controller('settingController', function ($scope, Data) {
@@ -334,7 +220,7 @@ produccionApp.filter('searchBy', function() {
          } )[0];
          // this returns an array. You can pick the first element with [0]
     }
-} );
+});
 
 produccionApp.filter('searchByRefBackcolor', function() {
   
@@ -350,7 +236,6 @@ produccionApp.filter('searchByRefBackcolor', function() {
 
     return  null;
   }
-
 });
 
 produccionApp.filter('searchByRefForecolor', function() {
@@ -367,5 +252,4 @@ produccionApp.filter('searchByRefForecolor', function() {
 
     return  null;
   }
-
 });
